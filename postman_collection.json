@@ -1,0 +1,359 @@
+{
+  "info": {
+    "name": "Ragam Batik",
+    "_postman_id": "b1d8d8b0-4bf9-4f04-batik-ragam0001",
+    "description": "Collection untuk testing Ragam Batik.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000"
+    },
+    {
+      "key": "jwt",
+      "value": ""
+    },
+    {
+      "key": "api_key",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nama\": \"User Demo\",\n  \"email\": \"demo@mail.com\",\n  \"password\": \"secret123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/register",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"demo@mail.com\",\n  \"password\": \"secret123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "login"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Me",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/me",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "me"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "API Keys",
+      "item": [
+        {
+          "name": "Create Key",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nama\": \"Postman Key\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/keys",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "keys"
+              ]
+            }
+          }
+        },
+        {
+          "name": "List Keys",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/keys",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "keys"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Batik",
+      "item": [
+        {
+          "name": "Get Batik",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-api-key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/batik?page=1&limit=10",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "batik"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Filter Batik",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-api-key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/batik?provinsi=Jawa%20Tengah&search=parang",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "batik"
+              ],
+              "query": [
+                {
+                  "key": "provinsi",
+                  "value": "Jawa Tengah"
+                },
+                {
+                  "key": "search",
+                  "value": "parang"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Detail Batik ID 1",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-api-key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/batik/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "batik",
+                "1"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Stats",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-api-key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/batik/stats",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "batik",
+                "stats"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Batik",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"kode\": \"RBTEST001\",\n  \"nama\": \"Batik Uji Coba\",\n  \"daerah\": \"Yogyakarta\",\n  \"kota_asal\": \"Kota Yogyakarta\",\n  \"provinsi\": \"DI Yogyakarta\",\n  \"pulau\": \"Jawa\",\n  \"kategori_motif\": \"Geometris\",\n  \"motif_utama\": \"Bunga dan Garis\",\n  \"warna_dominan\": \"biru\",\n  \"warna_sekunder\": \"putih\",\n  \"gaya_batik\": \"Kontemporer\",\n  \"filosofi\": \"Keseimbangan dan ketekunan\",\n  \"makna\": \"Motif uji untuk demonstrasi CRUD.\",\n  \"teknik_pembuatan\": \"Tulis\",\n  \"bahan_kain\": \"katun\",\n  \"tingkat_kerumitan\": \"sedang\",\n  \"estimasi_hari_pembuatan\": 5,\n  \"penggunaan_tradisional\": \"busana\",\n  \"is_warisan_tradisional\": false,\n  \"deskripsi\": \"Data ini digunakan untuk pengujian endpoint POST, PUT, dan DELETE.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/batik",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "batik"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Batik",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nama\": \"Batik Uji Coba Update\",\n  \"warna_dominan\": \"merah\",\n  \"tingkat_kerumitan\": \"rumit\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/batik/66",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "batik",
+                "66"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Batik",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/batik/66",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "batik",
+                "66"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Dashboard - Ragam Batik</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="container">
+    <nav class="nav">
+      <a class="brand" href="/"><span class="brand-mark">RB</span><span>Ragam Batik</span></a>
+      <div class="nav-links">
+        <a class="btn btn-light" href="/docs">Dokumentasi</a>
+        <button id="logoutBtn" class="btn btn-dark">Logout</button>
+      </div>
+    </nav>
+
+    <header class="page-head">
+      <div class="kicker">Developer Dashboard</div>
+      <h1 id="welcome">Dashboard</h1>
+      <p class="section-copy">Kelola API key untuk mengakses layanan data Ragam Batik.</p>
+    </header>
+
+    <div class="stats">
+      <div class="stat"><span class="small">API Key</span><strong id="keyCount">0</strong></div>
+      <div class="stat"><span class="small">Key Aktif</span><strong id="activeCount">0</strong></div>
+      <div class="stat"><span class="small">Request Hari Ini</span><strong id="requestCount">0</strong></div>
+    </div>
+
+    <div class="layout">
+      <section class="panel">
+        <h2>Buat API Key</h2>
+        <p class="small">Free plan memiliki limit 1.000 request per hari per key.</p>
+        <form id="keyForm">
+          <div class="form-group"><label>Nama aplikasi / key</label><input id="keyName" placeholder="Contoh: Project Mobile" required></div>
+          <button class="btn btn-primary" type="submit">Generate Key</button>
+        </form>
+        <div id="keyMessage" class="message"></div>
+        <div id="secretBox" class="secret-box">
+          <strong>API key baru</strong>
+          <p class="small">Salin sekarang. Plaintext key hanya dikirim pada saat pembuatan.</p>
+          <div id="secretValue" class="secret-value"></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
+          <div><h2 style="margin-bottom:5px">API Key Saya</h2><p class="small" style="margin-top:0">Key yang sudah dibuat akan tampil sebagai prefix.</p></div>
+          <button id="refreshBtn" class="btn btn-light">Refresh</button>
+        </div>
+        <div id="keyList" class="key-list"></div>
+      </section>
+    </div>
+
+    <section class="panel" style="margin-bottom:60px">
+      <h2>Cara Kerja</h2>
+      <p class="small">Login memberikan JWT untuk mengelola API key. API key kemudian dikirim melalui header <code>x-api-key</code> ketika aplikasi client mengambil data batik.</p>
+    </section>
+  </div>
+  <script src="/dashboard.js"></script>
+</body>
+</html>

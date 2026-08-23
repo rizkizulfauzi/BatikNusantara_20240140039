@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Ragam Batik</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="container">
+    <nav class="nav">
+      <a class="brand" href="/">
+        <span class="brand-mark">RB</span>
+        <span>Ragam Batik</span>
+      </a>
+      <div class="nav-links">
+        <a class="btn btn-light hide-sm" href="/docs">Dokumentasi</a>
+        <a class="btn btn-dark" href="/dashboard">Dashboard</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="hero">
+        <div>
+          <div class="kicker">Data service untuk developer</div>
+          <h1>Ragam batik, siap dipakai lewat API.</h1>
+          <p>
+            Layanan data motif batik yang menyediakan informasi daerah asal, kategori motif,
+            filosofi, teknik pembuatan, bahan kain, tingkat kerumitan, dan atribut lainnya.
+            Akses data menggunakan API key setelah pengguna login.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#mulai">Mulai sekarang</a>
+            <a class="btn btn-light" href="/docs">Lihat endpoint</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="small">Contoh request</div>
+          <pre class="code">GET /api/batik?provinsi=Jawa Tengah
+x-api-key: rb_live_xxxxxxxx
+
+{
+  "success": true,
+  "meta": {
+    "page": 1,
+    "limit": 10,
+    "total": 25
+  },
+  "data": [...]
+}</pre>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-title">Dibuat seperti layanan API sungguhan</h2>
+        <p class="section-copy">User mengelola kredensial, sementara aplikasi client memakai API key untuk mengambil data.</p>
+        <div class="grid-3">
+          <div class="card"><div class="icon">01</div><h3>JWT Login</h3><p>Register dan login akun menggunakan JSON Web Token untuk fitur dashboard.</p></div>
+          <div class="card"><div class="icon">02</div><h3>API Key</h3><p>Setiap user dapat membuat API key yang dipakai aplikasi lain untuk mengakses dataset.</p></div>
+          <div class="card"><div class="icon">03</div><h3>65 Data</h3><p>Dataset awal berisi 65 motif dengan atribut kompleks dan query filter, sort, serta pagination.</p></div>
+        </div>
+      </section>
+
+      <section id="mulai" class="auth-wrap">
+        <div class="panel">
+          <div class="kicker">Akun baru</div>
+          <h2>Register</h2>
+          <p class="small">Buat akun untuk mendapatkan akses dashboard dan membuat API key.</p>
+          <form id="registerForm">
+            <div class="form-group"><label>Nama</label><input id="regNama" required></div>
+            <div class="form-group"><label>Email</label><input id="regEmail" type="email" required></div>
+            <div class="form-group"><label>Password</label><input id="regPassword" type="password" minlength="6" required></div>
+            <button class="btn btn-primary" type="submit">Register</button>
+          </form>
+          <div id="registerMessage" class="message"></div>
+        </div>
+
+        <div class="panel">
+          <div class="kicker">Sudah punya akun</div>
+          <h2>Login</h2>
+          <p class="small">JWT hasil login digunakan untuk mengakses dashboard dan manajemen API key.</p>
+          <form id="loginForm">
+            <div class="form-group"><label>Email</label><input id="loginEmail" type="email" required></div>
+            <div class="form-group"><label>Password</label><input id="loginPassword" type="password" required></div>
+            <button class="btn btn-dark" type="submit">Login</button>
+          </form>
+          <div id="loginMessage" class="message"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">Ragam Batik - Express.js, Sequelize, PostgreSQL, JWT, API Key, Vercel.</footer>
+  </div>
+  <script src="/app.js"></script>
+</body>
+</html>

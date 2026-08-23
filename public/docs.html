@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Dokumentasi - Ragam Batik</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="container">
+    <nav class="nav">
+      <a class="brand" href="/"><span class="brand-mark">RB</span><span>Ragam Batik</span></a>
+      <div class="nav-links"><a class="btn btn-dark" href="/dashboard">Dashboard</a></div>
+    </nav>
+
+    <header class="page-head">
+      <div class="kicker">API Documentation</div>
+      <h1>Dokumentasi</h1>
+      <p class="section-copy">Login dan pengelolaan data memakai JWT. Client membaca dataset memakai API key melalui header <code>x-api-key</code>.</p>
+    </header>
+
+    <div class="docs-grid">
+      <aside class="panel docs-nav">
+        <a href="#auth">Authentication</a>
+        <a href="#keys">API Key</a>
+        <a href="#batik">Batik Data</a>
+        <a href="#filter">Filter & Pagination</a>
+        <a href="#stats">Statistics</a>
+      </aside>
+
+      <main class="panel docs-content">
+        <section id="auth">
+          <h2>Authentication</h2>
+          <div class="endpoint"><span class="method">POST</span> /api/register</div>
+          <pre class="code">{
+  "nama": "Rizki",
+  "email": "rizki@mail.com",
+  "password": "12345678"
+}</pre>
+
+          <div class="endpoint"><span class="method">POST</span> /api/login</div>
+          <pre class="code">{
+  "email": "rizki@mail.com",
+  "password": "12345678"
+}</pre>
+          <p class="small">Gunakan token dari response login sebagai <b>Authorization: Bearer TOKEN</b>.</p>
+        </section>
+
+        <section id="keys">
+          <h2>API Key</h2>
+          <div class="endpoint"><span class="method">POST</span> /api/keys</div>
+          <pre class="code">Authorization: Bearer JWT_TOKEN
+Content-Type: application/json
+
+{ "nama": "Mobile App" }</pre>
+          <div class="endpoint"><span class="method">GET</span> /api/keys</div>
+          <div class="endpoint"><span class="method">DELETE</span> /api/keys/:id</div>
+        </section>
+
+        <section id="batik">
+          <h2>Batik Data — CRUD</h2>
+          <p class="small">GET memakai API key. POST, PUT, dan DELETE memakai JWT hasil login.</p>
+
+          <div class="endpoint"><span class="method">GET</span> /api/batik</div>
+          <pre class="code">x-api-key: rb_live_xxxxxxxxx
+
+GET /api/batik?page=1&amp;limit=10</pre>
+
+          <div class="endpoint"><span class="method">GET</span> /api/batik/:id</div>
+          <pre class="code">GET /api/batik/1
+x-api-key: rb_live_xxxxxxxxx</pre>
+
+          <div class="endpoint"><span class="method">POST</span> /api/batik</div>
+          <pre class="code">Authorization: Bearer JWT_TOKEN
+Content-Type: application/json
+
+{
+  "kode": "RBTEST001",
+  "nama": "Batik Uji Coba",
+  "daerah": "Yogyakarta",
+  "kota_asal": "Kota Yogyakarta",
+  "provinsi": "DI Yogyakarta",
+  "pulau": "Jawa",
+  "kategori_motif": "Geometris",
+  "motif_utama": "Bunga dan Garis",
+  "warna_dominan": "biru",
+  "warna_sekunder": "putih",
+  "gaya_batik": "Kontemporer",
+  "filosofi": "Keseimbangan dan ketekunan",
+  "makna": "Motif uji untuk demonstrasi CRUD.",
+  "teknik_pembuatan": "Tulis",
+  "bahan_kain": "katun",
+  "tingkat_kerumitan": "sedang",
+  "estimasi_hari_pembuatan": 5,
+  "penggunaan_tradisional": "busana",
+  "is_warisan_tradisional": false,
+  "deskripsi": "Data pengujian CRUD."
+}</pre>
+
+          <div class="endpoint"><span class="method">PUT</span> /api/batik/:id</div>
+          <pre class="code">Authorization: Bearer JWT_TOKEN
+Content-Type: application/json
+
+{
+  "nama": "Batik Uji Coba Update",
+  "warna_dominan": "merah"
+}</pre>
+
+          <div class="endpoint"><span class="method">DELETE</span> /api/batik/:id</div>
+          <pre class="code">Authorization: Bearer JWT_TOKEN</pre>
+        </section>
+
+        <section id="filter">
+          <h2>Filter & Pagination</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Parameter</th><th>Contoh</th></tr></thead>
+              <tbody>
+                <tr><td>search</td><td>search=parang</td></tr>
+                <tr><td>provinsi</td><td>provinsi=Jawa Tengah</td></tr>
+                <tr><td>daerah</td><td>daerah=Lasem</td></tr>
+                <tr><td>pulau</td><td>pulau=Jawa</td></tr>
+                <tr><td>kategori_motif</td><td>kategori_motif=Geometris</td></tr>
+                <tr><td>teknik_pembuatan</td><td>teknik_pembuatan=Tulis</td></tr>
+                <tr><td>warna_dominan</td><td>warna_dominan=merah</td></tr>
+                <tr><td>tingkat_kerumitan</td><td>tingkat_kerumitan=rumit</td></tr>
+                <tr><td>tradisional</td><td>tradisional=true</td></tr>
+                <tr><td>page / limit</td><td>page=2&limit=10</td></tr>
+                <tr><td>sort / order</td><td>sort=nama&order=asc</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="stats">
+          <h2>Statistics</h2>
+          <div class="endpoint"><span class="method">GET</span> /api/batik/stats</div>
+          <p class="small">Mengembalikan total data serta agregasi berdasarkan provinsi, teknik pembuatan, dan kategori motif.</p>
+        </section>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

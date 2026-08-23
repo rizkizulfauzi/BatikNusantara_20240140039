@@ -1,0 +1,89 @@
+### Health
+GET http://localhost:3000/health
+
+### Register
+POST http://localhost:3000/api/register
+Content-Type: application/json
+
+{
+  "nama": "User Demo",
+  "email": "demo@mail.com",
+  "password": "secret123"
+}
+
+### Login
+POST http://localhost:3000/api/login
+Content-Type: application/json
+
+{
+  "email": "demo@mail.com",
+  "password": "secret123"
+}
+
+### Create API Key
+POST http://localhost:3000/api/keys
+Authorization: Bearer GANTI_DENGAN_JWT
+Content-Type: application/json
+
+{
+  "nama": "VS Code Key"
+}
+
+### GET semua batik
+GET http://localhost:3000/api/batik?page=1&limit=10
+x-api-key: GANTI_DENGAN_API_KEY
+
+### GET detail batik berdasarkan ID
+GET http://localhost:3000/api/batik/1
+x-api-key: GANTI_DENGAN_API_KEY
+
+### Filter
+GET http://localhost:3000/api/batik?provinsi=Jawa%20Tengah&search=parang
+x-api-key: GANTI_DENGAN_API_KEY
+
+### Stats
+GET http://localhost:3000/api/batik/stats
+x-api-key: GANTI_DENGAN_API_KEY
+
+### POST tambah batik
+POST http://localhost:3000/api/batik
+Authorization: Bearer GANTI_DENGAN_JWT
+Content-Type: application/json
+
+{
+  "kode": "RBTEST001",
+  "nama": "Batik Uji Coba",
+  "daerah": "Yogyakarta",
+  "kota_asal": "Kota Yogyakarta",
+  "provinsi": "DI Yogyakarta",
+  "pulau": "Jawa",
+  "kategori_motif": "Geometris",
+  "motif_utama": "Bunga dan Garis",
+  "warna_dominan": "biru",
+  "warna_sekunder": "putih",
+  "gaya_batik": "Kontemporer",
+  "filosofi": "Keseimbangan dan ketekunan",
+  "makna": "Motif uji untuk demonstrasi CRUD.",
+  "teknik_pembuatan": "Tulis",
+  "bahan_kain": "katun",
+  "tingkat_kerumitan": "sedang",
+  "estimasi_hari_pembuatan": 5,
+  "penggunaan_tradisional": "busana",
+  "is_warisan_tradisional": false,
+  "deskripsi": "Data ini digunakan untuk pengujian endpoint POST, PUT, dan DELETE."
+}
+
+### PUT update batik (ganti 66 dengan ID hasil POST)
+PUT http://localhost:3000/api/batik/66
+Authorization: Bearer GANTI_DENGAN_JWT
+Content-Type: application/json
+
+{
+  "nama": "Batik Uji Coba Update",
+  "warna_dominan": "merah",
+  "tingkat_kerumitan": "rumit"
+}
+
+### DELETE batik (ganti 66 dengan ID hasil POST)
+DELETE http://localhost:3000/api/batik/66
+Authorization: Bearer GANTI_DENGAN_JWT
