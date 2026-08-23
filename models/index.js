@@ -9,6 +9,7 @@ const process = require('process');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.js')[env];
+
 const db = {};
 
 let sequelize;
@@ -19,7 +20,13 @@ if (config.use_env_variable) {
   sequelize = new Sequelize(connectionUrl, {
     ...config,
     dialect: 'postgres',
-    dialectModule: pg
+    dialectModule: pg,
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false
+      }
+    }
   });
 } else {
   sequelize = new Sequelize(
@@ -40,11 +47,14 @@ fs.readdirSync(__dirname)
   .forEach((file) => {
     const modelDef = require(path.join(__dirname, file));
     const model = modelDef(sequelize, Sequelize.DataTypes);
+
     db[model.name] = model;
   });
 
 Object.keys(db).forEach((modelName) => {
-  if (db[modelName].associate) db[modelName].associate(db);
+  if (db[modelName].associate) {
+    db[modelName].associate(db);
+  }
 });
 
 db.sequelize = sequelize;

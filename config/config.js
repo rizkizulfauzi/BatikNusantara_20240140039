@@ -10,13 +10,13 @@ const development = {
   logging: false
 };
 
-// Mengikuti pola DAY14 untuk environment production di Vercel.
 const production = {
   use_env_variable: "POSTGRES_URL",
   dialect: "postgres",
   logging: false,
   dialectOptions: {
     ssl: {
+      require: true,
       rejectUnauthorized: false
     }
   }
