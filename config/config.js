@@ -16,7 +16,6 @@ const production = {
   logging: false,
   dialectOptions: {
     ssl: {
-      require: true,
       rejectUnauthorized: false
     }
   }
